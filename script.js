@@ -1,9 +1,3 @@
-function clearHighscores() {
-    window.localStorage.removeItem("highscores");
-    window.location.reload();
-  }
-    
-//document.getElementById("clear").onclick = clearHighscores;
 var questions = [
     {
         title: "Which one is a fruit:",
@@ -139,12 +133,12 @@ function quizEnd() {
   
     // show end screen
 
-  var endScreenEl = document.querySelector("#end-screen");
+  var endScreenEl = document.getElementById("end-screen");
     //var endScreenEl = document.getElementById("end-screen");
     endScreenEl.removeAttribute("class");
   
     // show final score
-  var finalScoreEl = document.querySelector("#final-score");
+  var finalScoreEl = document.getElementById("final-score");
     finalScoreEl.textContent = time;
   
     // hide questions section
@@ -196,13 +190,12 @@ function checkEnter(event) {
 }
   
   // user clicks button to submit initials
-  //submitBtn.onclick = saveHiscore;
+  submitBtn.onclick = saveHiscore;
   
   // user clicks button to start quiz
   startBtn.addEventListener ("click" ,BeginQuiz);
-  submitBtn.addEventListener("submit", saveHiscore);
   
-  //initialsEl.onkeyup = checkForEnter;
+  initialsEl.onkeyup = checkForEnter;
   
   // below are my question js 
 
