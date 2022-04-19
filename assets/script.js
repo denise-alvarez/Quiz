@@ -1,39 +1,34 @@
 var questions = [
-    {
-        title: "Which one is a fruit:",
-        choices: ["radish", "potato", "tomato", "steak"],
-        answer: "tomato"
+      {
+        title: "A Nightmare on Elm Street takes place where?",
+        choices: ["Springwood, Ohio", "Springwood, California", "Cunninham County, New Jersey", "Bakersfield, California"],
+        answer: "Springwood, Ohio"
       },
       {
-        title: "question",
-        choices: ["words", "words", "words", "words"],
-        answer: "answer"
+        title: "How many Michael Myers Halloween movies are there?",
+        choices: ["8", "9", "10", "4"],
+        answer: "9"
       },
       {
-        title: "question",
-        choices: [
-          "words",
-          "words",
-          "words",
-          "all of the above"
-        ],
-        answer: "all of the above"
+        title: "What's 'the secret' of Michael Myer's Mask?",
+        choices: ["The original was accidentally auctioned off for $86","It's actually a Lee Majors mask painted white","It's actually a William Shatner mask painted white",],
+        answer: "It's actually a William Shatner mask painted white"
       },
       {
-        title: "Question",
-        choices: ["word", "word", "word", "word"],
-        answer: "quotes"
+        title: "What is the name of the demon from The Exorcist?",
+        choices: ["Pazuzu", "Tannin", "Abaddon", "Azazel"],
+        answer: "Pazuzu"
       },
       {
-        title:"Question",
-        choices: ["words", "words", "word", "words"],
-        answer: "words"
+        title:"What cult movie franchise is said to be cursed following a series of accidents and tragedies involving actors in various films?",
+        choices: ["Poltergeist", "Alien", "Hostel", "Car"],
+        answer: "Poltergeist"
       }
     ];     
 
 // variables to keep track of quiz state
 var currentQuestionIndex = 0;
-var time = questions.length * 20;
+var time = questions.length * 30;
 var timerId;
   
 // variables to reference DOM elements
@@ -45,7 +40,7 @@ var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
   
-function BeginQuiz() {        
+function beginQuiz() {        
   // hide start screen
   var startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
@@ -53,7 +48,7 @@ function BeginQuiz() {
   // un-hide questions section
   questionsEl.removeAttribute("class");
   // start timer
-  timerId = setInterval(clockTick, 1300);
+  timerId = setInterval(clockTick, 1200);
 
   // show starting time
   timerEl.textContent = time;
@@ -62,37 +57,38 @@ function BeginQuiz() {
 }
 
 function getQuestion() {
-    // get current question object from array
-    var currentQuestion = questions[currentQuestionIndex];
+  // get current question object from array
+  var currentQuestion = questions[currentQuestionIndex];
   
-    // update title with current question
-    var titleEl = document.getElementById("question-title");
-    titleEl.textContent = currentQuestion.title;
+  // update title with current question
+  var titleEl = document.getElementById("question-title");
+  titleEl.textContent = currentQuestion.title;
   
-    // clear out any old question choices
-    choicesEl.innerHTML = "";
+  // clear out any old question choices
+  choicesEl.innerHTML = "";
   
-    // loop over choices
-    currentQuestion.choices.forEach(function(choice, i) {
-      // create new button for each choice
-      var choiceNode = document.createElement("button");
-      choiceNode.setAttribute("class", "choice");
-      choiceNode.setAttribute("value", choice);
+  // loop over choices
+  currentQuestion.choices.forEach(function(choice, i) {
+  // create new button for each choice
+  var choiceNode = document.createElement("button");
+  choiceNode.setAttribute("class", "choice");
+  choiceNode.setAttribute("value", choice);
   
-      choiceNode.textContent = i + 1 + ". " + choice;
+  choiceNode.textContent = i + 1 + ". " + choice;
   
-      // attach click event listener to each choice
-      choiceNode.onclick = questionClick;
+  // attach click event listener to each choice
+  choiceNode.onclick = questionClick;
   
-      // display on the page
-      choicesEl.appendChild(choiceNode);
-    });
-  }
+  // display on the page
+  choicesEl.appendChild(choiceNode);
+});
+}
+
 function questionClick() {
   // check if user guessed wrong
   if (this.value !== questions[currentQuestionIndex].answer) {
     // penalize time
-    time -= 20;
+    time -= 30;
 
     if (time < 0) {
       time = 0;
@@ -103,19 +99,16 @@ function questionClick() {
 
     feedbackEl.textContent = "Wrong!";
   } else {
-    //here play correct sound effect
+   
+    feedbackEl.textContent = "Correct!";
+  }     
 
-    // play "right" sound effect
-    //sfxRight.play();
-      feedbackEl.textContent = "Correct!";
-  }  
-}
     
   // flash right/wrong feedback on page for half a second
   feedbackEl.setAttribute("class", "feedback");
   setTimeout(function() {
     feedbackEl.setAttribute("class", "feedback hide");
- },  1200);
+  },  1200);
   
   // this will ask the next quesiton
   currentQuestionIndex++;
@@ -125,7 +118,8 @@ function questionClick() {
     quizEnd();
    } else {
    getQuestion();
-   }     
+   }
+}        
 
 function quizEnd() {
     // stop timer
@@ -134,8 +128,7 @@ function quizEnd() {
     // show end screen
 
   var endScreenEl = document.getElementById("end-screen");
-    //var endScreenEl = document.getElementById("end-screen");
-    endScreenEl.removeAttribute("class");
+  endScreenEl.removeAttribute("class");
   
     // show final score
   var finalScoreEl = document.getElementById("final-score");
@@ -157,8 +150,7 @@ function clockTick() {
 }
 
 
-function saveHiscore(event) {
-    event.preventDefault();
+function saveHiscore() {
     // get value of input box
     var initials = initialsEl.value.trim();
   
@@ -177,7 +169,7 @@ function saveHiscore(event) {
         // this .push function will save to localstorage
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
-        window.location.href = "/Highscore.html"
+        window.location.href = "Highscore.html"
         // want to display a list on the left side when they click "score sheet" to view results.
     }
 }
@@ -188,15 +180,6 @@ function checkEnter(event) {
     saveHiscore();
   }
 }
-  
-  // user clicks button to submit initials
-  submitBtn.onclick = saveHiscore;
-  
-  // user clicks button to start quiz
-  startBtn.addEventListener ("click" ,BeginQuiz);
-  
-  initialsEl.onkeyup = checkForEnter;
-  
-  // below are my question js 
 
-  // list of all questions, choices, and answers
+startBtn.addEventListener ("click" , beginQuiz);
+submitBtn.addEventListener ("submit", saveHiscore);

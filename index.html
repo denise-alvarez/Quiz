@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css"/>
+    
+    <link rel="stylesheet" href="/assets/style.css"/>
 </head>
 
 <body>
 
-  <div class="scores"><a href="./Highscore.html">View Highscores</a></div>
+  <div class="scores"><a href="/Highscore.html">View Highscores</a></div>
 
   <div class="timer">Time: <span id="time">0</span></div>
 
@@ -37,15 +39,15 @@
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
       <form id="submit">
-      <p> Enter initials: <input type="text" id="initials" max="3">
-      </p>
+        <p> Enter initials: <input type="text" id="initials" max="3">
+        </p>  
         <button type="submit">Submit</button>
-    </form>
+      </form> 
     </div>
 
     <div id="feedback" class="feedback hide"></div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="/assets/script.js"></script>
    </body>
 </html>

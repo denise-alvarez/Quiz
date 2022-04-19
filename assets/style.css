@@ -1,8 +1,9 @@
 body {
-    background-image: url("./images/background2.jpg");
+    background-image: url("/images/background2.jpg");
     background-size: cover;
     font-family: 'Creepster', cursive;
-    font-size: 120%;
+    font-size: 150%;
+    color: white;
   }
   
   a {
@@ -29,7 +30,7 @@ body {
   }
   
   button:hover {
-    background-color: black;
+    background-color: grey;
   }
   
   .choices button {
@@ -79,7 +80,7 @@ body {
     font-size: 120%;
     margin-top: 20px;
     padding-top: 10px;
-    color: gray;
+    color: yellowgreen;
     border-top: 2px solid #ccc;
   }
   
