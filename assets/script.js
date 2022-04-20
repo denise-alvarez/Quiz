@@ -1,3 +1,5 @@
+//questions w/choices and answers
+
 var questions = [
       {
         title: "A Nightmare on Elm Street takes place where?",
@@ -28,7 +30,7 @@ var questions = [
 
 // variables to keep track of quiz state
 var currentQuestionIndex = 0;
-var time = questions.length * 30;
+var time = questions.length * 20;
 var timerId;
   
 // variables to reference DOM elements
@@ -108,7 +110,7 @@ function questionClick() {
   feedbackEl.setAttribute("class", "feedback");
   setTimeout(function() {
     feedbackEl.setAttribute("class", "feedback hide");
-  },  1200);
+  },  1000);
   
   // this will ask the next quesiton
   currentQuestionIndex++;
@@ -175,7 +177,7 @@ function saveHiscore() {
 }
   
 function checkEnter(event) {
-  // "13" represents the enter key
+
   if (event.key === "Enter") {
     saveHiscore();
   }
