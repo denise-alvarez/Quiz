@@ -1,9 +1,9 @@
 body {
-    background-image: url("/images/bg2.JPG");
+    background-image: url("/images/bg2.png");
     background-size: cover;
     font-family: 'Creepster', cursive;
     font-size: 150%;
-    color: white;
+    color: yellowgreen;
   }
   
   a {
